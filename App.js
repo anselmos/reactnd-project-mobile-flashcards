@@ -4,22 +4,11 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import DeckList from "./src/components/DeckList";
 import Deck from "./src/components/Deck";
-function HomeScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen</Text>
-      <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate('Details')}
-      />
-    </View>
-  );
-}
 
 function Dashboard({route, navigation}){
     const {deck} = route.params;
   return (
-        <View style={styles.container}>
+    <View style={styles.container}>
           <Deck deck={deck} navigation={navigation}/>
     </View>
   );
@@ -33,6 +22,8 @@ export default function App() {
           <Stack.Navigator initialRouteName="Home">
             <Stack.Screen name="Home" component={DeckList} />
             <Stack.Screen name="Details" component={Dashboard} />
+            <Stack.Screen name="Quiz" component={Dashboard} />
+            <Stack.Screen name="NewQuestion" component={Dashboard} />
           </Stack.Navigator>
         </NavigationContainer>
   );
