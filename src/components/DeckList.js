@@ -1,6 +1,6 @@
 // List of Decks!
 import React from 'react';
-import {FlatList, Text, TouchableHighlight, View} from 'react-native';
+import {FlatList, Text, TouchableHighlight, View, Animated} from 'react-native';
 import DeckListElement from "./DeckListElement";
 import {DECK_LIST} from "../DATA"
 
@@ -23,9 +23,9 @@ export default function DeckList({navigation}){
                 (
                     <TouchableHighlight key={item.id} onPress={DeckListElementClicked.bind(this, item, navigation)}>
                         <DeckListElement
-                        key={item.id}
-                        title={item.title}
-                        number_of_cards={Object.keys(item.cards).length}
+                            key={item.id}
+                            title={item.title}
+                            number_of_cards={Object.keys(item.cards).length}
                         />
                     </TouchableHighlight>
                 )
