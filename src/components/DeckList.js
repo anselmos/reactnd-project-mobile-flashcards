@@ -1,31 +1,37 @@
 // List of Decks!
 import React from 'react';
-import {Text, View, TouchableHighlight, FlatList} from 'react-native';
+import {FlatList, Text, TouchableHighlight, View} from 'react-native';
 import DeckListElement from "./DeckListElement";
 import {DECK_LIST} from "../DATA"
 
-function DeckListElementClicked(deck_element){
+function DeckListElementClicked(deck_element, navigation){
     // TODO move to Deck -> with a Animation!
-    console.log(deck_element.title, deck_element.id);
+    navigation.navigate('Details', {
+        deck: deck_element,
+    });
 }
-function renderDeckListElement({item}){
-    return (
-        <TouchableHighlight key={item.id} onPress={DeckListElementClicked.bind(this, item)}>
-            <DeckListElement
-            key={item.id}
-            title={item.title}
-            number_of_cards={Object.keys(item.cards).length}
-            />
-        </TouchableHighlight>
-        )
-}
-export default function DeckList(){
+
+export default function DeckList({navigation}){
   return (
     <View>
       <Text>This is the list of decks</Text>
         <FlatList
         data={DECK_LIST}
-        renderItem={renderDeckListElement}/>
+
+        renderItem={
+            ({item}) =>
+                (
+                    <TouchableHighlight key={item.id} onPress={DeckListElementClicked.bind(this, item, navigation)}>
+                        <DeckListElement
+                        key={item.id}
+                        title={item.title}
+                        number_of_cards={Object.keys(item.cards).length}
+                        />
+                    </TouchableHighlight>
+                )
+        }
+
+        />
     </View>
   );
 }
