@@ -1,9 +1,12 @@
-import React, {useState} from 'react';
-import {Button, StyleSheet, Text, View, Animated} from 'react-native';
+import React from 'react';
+import {StyleSheet, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import DeckList from "./src/components/DeckList";
 import Deck from "./src/components/Deck";
+import Quiz from "./src/components/Quiz";
+import NewQuestion from "./src/components/NewQuestion";
+
 
 function Dashboard({route, navigation}){
     const {deck} = route.params;
@@ -23,8 +26,8 @@ export default function App() {
           <Stack.Navigator initialRouteName="Home">
             <Stack.Screen name="Home" component={DeckList} />
             <Stack.Screen name="Details" component={Dashboard} />
-            <Stack.Screen name="Quiz" component={Dashboard} />
-            <Stack.Screen name="NewQuestion" component={Dashboard} />
+            <Stack.Screen name="Quiz" component={Quiz} />
+            <Stack.Screen name="NewQuestion" component={NewQuestion} />
           </Stack.Navigator>
         </NavigationContainer>
   );

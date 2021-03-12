@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Text, View, Animated} from 'react-native';
+import {Animated, Text} from 'react-native';
 import {styles} from '../../App'
 
 // Deck element in List

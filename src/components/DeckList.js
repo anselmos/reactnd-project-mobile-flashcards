@@ -1,6 +1,6 @@
 // List of Decks!
 import React from 'react';
-import {FlatList, Text, TouchableHighlight, View, Animated} from 'react-native';
+import {FlatList, Text, TouchableHighlight, View} from 'react-native';
 import DeckListElement from "./DeckListElement";
 import {DECK_LIST} from "../DATA"
 

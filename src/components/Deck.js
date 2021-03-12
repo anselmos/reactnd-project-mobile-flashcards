@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, Button, View} from 'react-native';
+import {Button, Text, View} from 'react-native';
 // Individual deck card.
 /**
  The deck title
@@ -26,8 +26,8 @@ export default function Deck({deck, navigation}){
     <View>
       <Text>Deck id:[{deck.id} {deck.title} </Text>
       <Text>Number of cards {number_of_cards} </Text>
-      <Button onPress={quiz_callback.bind(this, deck.id)}>Start Quiz</Button>
-      <Button onPress={new_question_callback.bind(this, deck.id)}>Add new Question to Deck</Button>
+      <Button onPress={quiz_callback.bind(this, deck.id)} title="Start Quiz"/>
+      <Button onPress={new_question_callback.bind(this, deck.id)} title="Add new Question to Deck"/>
     </View>
   );
 }
