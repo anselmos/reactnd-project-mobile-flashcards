@@ -1,6 +1,7 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {Button} from "react-native-web";
+import {
+  Button, StyleSheet, Text, View,
+} from 'react-native';
 
 /*
 # Does the Quiz View function correctly?
@@ -18,29 +19,35 @@ const Separator = () => (
   <View style={styles.separator} />
 );
 
-export default function Quiz({navigation, route}){
-    const {deck} = route.params;
-    // FIXME change into loaded information about how much of deck cards answered by user.
-    let questions_remaining = deck.cards.length;
-    let question_from_deck = ` ${deck.cards[0].question}`
-      return (
-        <View style={styles.container}>
-          <Text style={styles.title}>Question from deck card: {question_from_deck}</Text>
-          <Button style={styles.button} title="Show Answer"/>
-            <Separator/>
-            <Text>Did you answered correctly ? </Text>
-            <Button style={styles.button} title="Correct!"/>
-            <Button style={styles.button} title="Incorrect  :( "/>
-            <Text>Number of questions remaining: {questions_remaining} </Text>
-            <Button style={styles.button} title={"Add new Question to Deck"}/>
-        </View>
-      );
+export default function Quiz({ navigation, route }) {
+  const { deck } = route.params;
+  // FIXME change into loaded information about how much of deck cards answered by user.
+  const questions_remaining = deck.cards.length;
+  const question_from_deck = ` ${deck.cards[0].question}`;
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>
+        Question from deck card:
+        {question_from_deck}
+      </Text>
+      <Button style={styles.button} title="Show Answer" />
+      <Separator />
+      <Text>Did you answered correctly ? </Text>
+      <Button style={styles.button} title="Correct!" />
+      <Button style={styles.button} title="Incorrect  :( " />
+      <Text>
+        Number of questions remaining:
+        {questions_remaining}
+      </Text>
+      <Button style={styles.button} title="Add new Question to Deck" />
+    </View>
+  );
 }
 const styles = StyleSheet.create({
-    button: {
+  button: {
     alignItems: 'center',
     backgroundColor: '#DDDDDD',
-    padding: 10
+    padding: 10,
   },
   container: {
     flex: 1,

@@ -1,6 +1,7 @@
-import React from "react";
-import {StyleSheet, Text, View} from "react-native";
-import {Button, TextInput} from "react-native-web";
+import React from 'react';
+import {
+  Button, StyleSheet, Text, View,
+} from 'react-native';
 
 /*
 # Does the New Question view function correctly?
@@ -13,25 +14,24 @@ const Separator = () => (
   <View style={styles.separator} />
 );
 
-
-export default function NewQuestion({navigation, route}){
-    const {deck} = route.params;
-    // FIXME change into loaded information about how much of deck cards answered by user.
-      return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Create new question for deck : </Text>
-            <TextInput label="Question"/>
-            <Separator/>
-            <TextInput label="Answer" />
-            <Button style={styles.button} title="Create new question card."/>
-        </View>
-      );
+export default function NewQuestion({ navigation, route }) {
+  const { deck } = route.params;
+  // FIXME change into loaded information about how much of deck cards answered by user.
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Create new question for deck : </Text>
+      {/* <TextInput label="Question"/> */}
+      <Separator />
+      {/* <TextInput label="Answer"/> */}
+      <Button title="Create new question card." />
+    </View>
+  );
 }
 const styles = StyleSheet.create({
-    button: {
+  button: {
     alignItems: 'center',
     backgroundColor: '#DDDDDD',
-    padding: 10
+    padding: 10,
   },
   container: {
     flex: 1,
