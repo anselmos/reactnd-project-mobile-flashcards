@@ -12,13 +12,13 @@ import {connect} from "react-redux";
 const Stack = createStackNavigator();
 
 // TODO move to redux-thunk!
-async function getOrUpdateUserData(){
+async function getOrUpdateDecksData(){
     const decks = await getDecks();
     this.props.dispatch(receiveDataAction(decks));
 }
 class ReduxedApp extends React.Component {
     componentDidMount() {
-        getOrUpdateUserData.call(this);
+        getOrUpdateDecksData.call(this);
     }
     render(){
         return (
