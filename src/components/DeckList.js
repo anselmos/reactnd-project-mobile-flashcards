@@ -4,7 +4,7 @@ import {
   FlatList, Text, TouchableHighlight, View,
 } from 'react-native';
 import DeckListElement from './DeckListElement';
-import { DECK_LIST } from '../DATA';
+import { decks } from '../DATA';
 
 function DeckListElementClicked(deck_element, navigation) {
   // TODO move to Deck -> with a Animation!
@@ -18,7 +18,7 @@ export default function DeckList({ navigation }) {
     <View>
       <Text>This is the list of decks</Text>
       <FlatList
-        data={DECK_LIST}
+        data={decks}
 
         renderItem={
             ({ item }) => (
