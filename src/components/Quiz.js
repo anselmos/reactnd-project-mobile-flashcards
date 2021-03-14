@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   Button, StyleSheet, Text, View,
 } from 'react-native';
@@ -24,15 +24,19 @@ export default function Quiz({ navigation, route }) {
   // FIXME change into loaded information about how much of deck cards answered by user.
   const questions_remaining = deck.cards.length;
   const question_from_deck = ` ${deck.cards[0].question}`;
+  const answer_from_deck = ` ${deck.cards[0].answer}`;
+  let [showAnswer, toggleShowAnswer] = useState(false)
   return (
     <View style={styles.container}>
       <Text style={styles.title}>
-        Question from deck card:
+        Question:
         {question_from_deck}
       </Text>
-      <Button style={styles.button} title="Show Answer" />
-      <Separator />
+      <Button onPress={ () => toggleShowAnswer(!showAnswer)} style={styles.button} title="Show Answer" />
       <Text>Did you answered correctly ? </Text>
+      <Separator />
+        {showAnswer? <Text>{answer_from_deck}</Text>: ''}
+      <Separator />
       <Button style={styles.button} title="Correct!" />
       <Button style={styles.button} title="Incorrect  :( " />
       <Text>
