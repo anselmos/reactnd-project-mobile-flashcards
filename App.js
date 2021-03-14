@@ -1,36 +1,19 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-import DeckList from "./src/components/DeckList";
-import Deck from "./src/components/Deck";
-import Quiz from "./src/components/Quiz";
-import NewQuestion from "./src/components/NewQuestion";
+import {StyleSheet} from 'react-native';
+import {Provider} from 'react-redux'
+import store from './store';
 
+import ReduxedApp from "./ReduxedApp";
 
-function Dashboard({route, navigation}){
-    const {deck} = route.params;
-  return (
-    <View style={styles.container}>
-          <Deck deck={deck} navigation={navigation}/>
-    </View>
-  );
-}
+class App extends React.Component {
 
-const Stack = createStackNavigator();
-
-export default function App() {
-
-  return (
-        <NavigationContainer>
-          <Stack.Navigator initialRouteName="Home">
-            <Stack.Screen name="Home" component={DeckList} />
-            <Stack.Screen name="Details" component={Dashboard} />
-            <Stack.Screen name="Quiz" component={Quiz} />
-            <Stack.Screen name="NewQuestion" component={NewQuestion} />
-          </Stack.Navigator>
-        </NavigationContainer>
-  );
+    render() {
+        return (
+            <Provider store={store}>
+                <ReduxedApp/>
+            </Provider>
+        );
+    }
 }
 
 export const styles = StyleSheet.create({
@@ -41,3 +24,5 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default App;

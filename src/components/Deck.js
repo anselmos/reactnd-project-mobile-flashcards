@@ -1,6 +1,8 @@
 import React from 'react';
-import { Button, Text, View } from 'react-native';
+import {Button, Text, View} from 'react-native';
+import {styles} from "../../App";
 // Individual deck card.
+
 /**
  The deck title
 Number of cards in the deck
@@ -8,7 +10,8 @@ Option to start a quiz for that deck
 Option to add a new question to the deck
  */
 
-export default function Deck({ deck, navigation }) {
+export default function Deck({route, navigation}) {
+    const { deck } = route.params;
   const quiz_callback = ({}) => {
     navigation.navigate('Quiz', {
       deck,
@@ -21,7 +24,7 @@ export default function Deck({ deck, navigation }) {
   };
   const number_of_cards = deck.cards.length;
   return (
-    <View>
+    <View style={styles.container}>
       <Text>
         Deck id:[
         {deck.id}
