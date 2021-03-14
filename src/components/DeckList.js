@@ -1,10 +1,9 @@
 // List of Decks!
 import React from 'react';
-import {
-  FlatList, Text, TouchableHighlight, View,
-} from 'react-native';
+import {FlatList, Text, TouchableHighlight, View,} from 'react-native';
 import DeckListElement from './DeckListElement';
-import { DECK_LIST } from '../DATA';
+import PropTypes from "prop-types";
+import {connect} from "react-redux";
 
 function DeckListElementClicked(deck_element, navigation) {
   // TODO move to Deck -> with a Animation!
@@ -13,12 +12,13 @@ function DeckListElementClicked(deck_element, navigation) {
   });
 }
 
-export default function DeckList({ navigation }) {
+function DeckList({ navigation, decks }) {
+    console.log("DeckList", decks)
   return (
     <View>
       <Text>This is the list of decks</Text>
       <FlatList
-        data={DECK_LIST}
+        data={decks}
 
         renderItem={
             ({ item }) => (
@@ -35,3 +35,15 @@ export default function DeckList({ navigation }) {
     </View>
   );
 }
+
+DeckList.propTypes = {
+    navigation: PropTypes.object,
+    route: PropTypes.object,
+    decks: PropTypes.object,
+}
+function mapStateToProps ({ decks }) {
+  return {
+    decks: decks
+  }
+}
+export default connect(mapStateToProps)( DeckList );
