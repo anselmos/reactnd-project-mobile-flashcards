@@ -21,26 +21,39 @@ const Separator = () => (
 
 export default function Quiz({ navigation, route }) {
   const { deck } = route.params;
-  // FIXME change into loaded information about how much of deck cards answered by user.
-  const questions_remaining = deck.cards.length;
-  const question_from_deck = ` ${deck.cards[0].question}`;
-  const answer_from_deck = ` ${deck.cards[0].answer}`;
-  let [showAnswer, toggleShowAnswer] = useState(false)
+    let deck_questions_count = deck.cards.length;
+    let[questions_remaining, updateQuestionsRemaining] = useState(deck_questions_count);
+    let [currentCard, toggleCurrentCard] = useState(0);
+    let [showAnswer, toggleShowAnswer] = useState(false)
+    let [correctlyAnswered, toggleCorrectlyAnswered] = useState(0);
+    if(questions_remaining === 0){
+        return (
+            <View><Text>No more questions in the card!, You've answered correctly : {correctlyAnswered} out of {deck_questions_count}</Text></View>
+        )
+    }
+    const question_from_deck = ` ${deck.cards[currentCard].question}`;
+    const answer_from_deck = ` ${deck.cards[currentCard].answer}`;
+    const correctPressed = ({}) => {
+        toggleCurrentCard(currentCard + 1);
+        toggleCorrectlyAnswered(correctlyAnswered + 1);
+        updateQuestionsRemaining(questions_remaining-1);
+  }
+    const incorrectPressed = ({}) => {
+        toggleCurrentCard(currentCard + 1);
+        updateQuestionsRemaining(questions_remaining-1);
+  }
   return (
     <View style={styles.container}>
       <Text style={styles.title}>
-        Question:
-        {question_from_deck}
+         {showAnswer? answer_from_deck: question_from_deck}
       </Text>
-      <Button onPress={ () => toggleShowAnswer(!showAnswer)} style={styles.button} title="Show Answer" />
+      <Button onPress={ () => toggleShowAnswer(!showAnswer)} style={styles.button} title={showAnswer? "Hide Answer": "Show Answer"} />
       <Text>Did you answered correctly ? </Text>
       <Separator />
-        {showAnswer? <Text>{answer_from_deck}</Text>: ''}
-      <Separator />
-      <Button style={styles.button} title="Correct!" />
-      <Button style={styles.button} title="Incorrect  :( " />
+      <Button onPress={correctPressed.bind(this)} color="green" title="Correct!" />
+      <Button onPress={incorrectPressed.bind(this)} color="red" title="Incorrect  :( " />
       <Text>
-        Number of questions remaining:
+        Questions remaining:
         {questions_remaining}
       </Text>
       <Button style={styles.button} title="Add new Question to Deck" />
@@ -48,11 +61,7 @@ export default function Quiz({ navigation, route }) {
   );
 }
 const styles = StyleSheet.create({
-  button: {
-    alignItems: 'center',
-    backgroundColor: '#DDDDDD',
-    padding: 10,
-  },
+
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -61,6 +70,7 @@ const styles = StyleSheet.create({
   title: {
     textAlign: 'center',
     marginVertical: 8,
+    fontSize: 40,
   },
   fixToText: {
     flexDirection: 'row',
