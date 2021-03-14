@@ -1,31 +1,28 @@
 import React, {useRef} from 'react';
 import {Button, StyleSheet, Text, TextInput, View,} from 'react-native';
-import {addCard} from '../decks/decks.action'
+import {addDeck} from '../decks/decks.action'
 import {connect} from "react-redux";
-import Separator from "./Separator";
+import {generateUID} from "./../DATA"
+
 /*
 # Does the New Question view function correctly?
 - The New Question view includes a form with fields for a question and answer, and a submit button.
 - Submitting the form correctly adds the question to the deck.
  */
 
-function NewQuestion({ navigation, route, dispatch }) {
-  const { deck } = route.params;
-  const question = useRef(null);
-  const answer = useRef(null);
-  const newQuestionHandle = ({}) => {
+function NewDeck({ navigation, dispatch }) {
+  const deckTitle = useRef(null);
+  const newDeckHandle = ({}) => {
     dispatch(
-        addCard(deck.id, {question: question.current.value, answer: answer.current.value})
+        addDeck({id: generateUID(), title: deckTitle.current.value, cards: []})
     );
     navigation.goBack()
   };
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Create new question for deck : </Text>
-      <TextInput label="Question" ref={question} />
-      <Separator />
-      <TextInput label="Answer" ref={answer} />
-      <Button onPress={newQuestionHandle.bind(this)} title="Create new question card." />
+      <Text style={styles.title}>New Deck Title: </Text>
+      <TextInput label="Title" ref={deckTitle} />
+      <Button onPress={newDeckHandle.bind(this)} title="Create new deck" />
     </View>
   );
 }
@@ -54,4 +51,4 @@ const styles = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
 });
-export default connect()( NewQuestion );
+export default connect()( NewDeck );

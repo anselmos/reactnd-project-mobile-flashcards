@@ -1,8 +1,6 @@
 import React from 'react';
 import {Button, Text, View} from 'react-native';
 import {styles} from "../../App";
-// Individual deck card.
-
 /**
  The deck title
 Number of cards in the deck
@@ -25,13 +23,8 @@ export default function Deck({route, navigation}) {
   const number_of_cards = deck.cards.length;
   return (
     <View style={styles.container}>
-      <Text>
-        Deck id:[
-        {deck.id}
-        ]
-        {' '}
+      <Text style={styles.title}>
         {deck.title}
-        {' '}
       </Text>
       <Text>
         Number of cards

@@ -1,4 +1,4 @@
-import {RECEIVE_DECKS, ADD_CARD} from './decks.reducer'
+import {RECEIVE_DECKS, ADD_CARD, ADD_DECK} from './decks.reducer'
 
 export function receiveDataAction (decks) {
   return {
@@ -10,5 +10,12 @@ export function addCard(deckId, card){
   return {
     type: ADD_CARD,
     deckId, card
+  }
+}
+
+export function addDeck(deck){
+  return {
+    type: ADD_DECK,
+    deck
   }
 }

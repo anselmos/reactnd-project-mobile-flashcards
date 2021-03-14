@@ -8,7 +8,7 @@ import Deck from "./src/components/Deck";
 import {getDecks} from "./src/DATA";
 import {receiveDataAction} from "./src/decks/decks.action";
 import {connect} from "react-redux";
-
+import NewDeck from "./src/components/NewDeck";
 const Stack = createStackNavigator();
 
 // TODO move to redux-thunk!
@@ -28,6 +28,7 @@ class ReduxedApp extends React.Component {
                 <Stack.Screen name="Details" component={Deck}/>
                 <Stack.Screen name="Quiz" component={Quiz}/>
                 <Stack.Screen name="NewQuestion" component={NewQuestion}/>
+                <Stack.Screen name="NewDeck" component={NewDeck}/>
             </Stack.Navigator>
         </NavigationContainer>
         )

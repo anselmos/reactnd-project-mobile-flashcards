@@ -1,8 +1,9 @@
 // List of Decks!
 import React from 'react';
-import {FlatList, Text, TouchableHighlight, View,} from 'react-native';
+import {FlatList, Text, TouchableHighlight, View, Button} from 'react-native';
 import DeckListElement from './DeckListElement';
 import PropTypes from "prop-types";
+import Separator from "./Separator";
 import {connect} from "react-redux";
 
 function DeckListElementClicked(deck_element, navigation) {
@@ -12,11 +13,17 @@ function DeckListElementClicked(deck_element, navigation) {
   });
 }
 
-function DeckList({ navigation, decks }) {
 
+function DeckList({ navigation, decks }) {
+    const newDeckHandle = ({}) => {
+        navigation.navigate('NewDeck');
+    }
   return (
     <View>
+        <Button onPress={newDeckHandle.bind(this)} title="New Deck"/>
+        <Separator/>
       <Text>This is the list of decks</Text>
+
       <FlatList
         data={Object.values(decks)}
         renderItem={

@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
-import {
-  Button, StyleSheet, Text, View,
-} from 'react-native';
-
+import {Button, StyleSheet, Text, View,} from 'react-native';
+import Separator from "./Separator";
 /*
 # Does the Quiz View function correctly?
 - The Quiz view starts with a question from the selected deck.
@@ -15,9 +13,6 @@ import {
 - Both the 'Restart Quiz' and 'Back to Deck' buttons route correctly to their respective views.
  */
 
-const Separator = () => (
-  <View style={styles.separator} />
-);
 
 export default function Quiz({ navigation, route }) {
   const { deck } = route.params;
