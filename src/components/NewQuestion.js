@@ -1,22 +1,18 @@
 import React, {useRef} from 'react';
-import {
-  Button, StyleSheet, Text, TextInput, View,
-} from 'react-native';
+import {Button, StyleSheet, Text, TextInput, View,} from 'react-native';
 import {addCard} from '../decks/decks.action'
 import {connect} from "react-redux";
 
 /*
 # Does the New Question view function correctly?
-
 - The New Question view includes a form with fields for a question and answer, and a submit button.
-
 - Submitting the form correctly adds the question to the deck.
  */
 const Separator = () => (
   <View style={styles.separator} />
 );
 
-function NewQuestion({ route, dispatch }) {
+function NewQuestion({ navigation, route, dispatch }) {
   const { deck } = route.params;
   const question = useRef(null);
   const answer = useRef(null);
@@ -25,6 +21,7 @@ function NewQuestion({ route, dispatch }) {
     dispatch(
         addCard(deck.id, {question: question.current.value, answer: answer.current.value})
     );
+    navigation.goBack()
   };
   return (
     <View style={styles.container}>
