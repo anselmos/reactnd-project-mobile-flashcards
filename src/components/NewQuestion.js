@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  Button, StyleSheet, Text, View,
-} from 'react-native';
+import {Button, StyleSheet, Text, TextInput, View} from 'react-native';
 
 /*
 # Does the New Question view function correctly?
@@ -20,9 +18,9 @@ export default function NewQuestion({ navigation, route }) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Create new question for deck : </Text>
-      {/* <TextInput label="Question"/> */}
+     <TextInput label="Question"/>
       <Separator />
-      {/* <TextInput label="Answer"/> */}
+     <TextInput label="Answer"/>
       <Button title="Create new question card." />
     </View>
   );

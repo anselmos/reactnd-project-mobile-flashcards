@@ -13,13 +13,12 @@ function DeckListElementClicked(deck_element, navigation) {
 }
 
 function DeckList({ navigation, decks }) {
-    console.log("DeckList", decks)
+
   return (
     <View>
       <Text>This is the list of decks</Text>
       <FlatList
-        data={decks}
-
+        data={Object.values(decks)}
         renderItem={
             ({ item }) => (
               <TouchableHighlight key={item.id} onPress={DeckListElementClicked.bind(this, item, navigation)}>

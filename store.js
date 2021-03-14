@@ -1,4 +1,4 @@
-import {applyMiddleware, compose, createStore} from 'redux';
+import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
 import {decks} from "./src/decks/decks.reducer";
 
 export const logger = (store) => (next) => (action) => {
@@ -11,7 +11,9 @@ export const logger = (store) => (next) => (action) => {
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
-  decks,
+    combineReducers({
+        decks
+    }),
   composeEnhancer(applyMiddleware(logger)),
 );
 
