@@ -1,5 +1,5 @@
 
-let decks = [
+export let decks = [
     {
         id: "firstIdOfDeck", title: "First deck", cards: [
             {id: "CardId1", question: "q1", answer: "a1"},
