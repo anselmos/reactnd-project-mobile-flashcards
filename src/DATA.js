@@ -1,12 +1,12 @@
 
-export let decks = [
-    {
+export let decks = {
+    "firstIdOfDeck": {
         id: "firstIdOfDeck", title: "First deck", cards: [
             {id: "CardId1", question: "q1", answer: "a1"},
             {id: "CardId2", question: "q2", answer: "a2"},
         ]
     },
-]
+}
 // TODO use for save how many deck-cards answered correctly in this attempt.
 let answers = [
     {id: "deckId", correct: ["idOfCardDeckAnsweredCorrectly"]}

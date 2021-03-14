@@ -1,5 +1,9 @@
-import React from 'react';
-import {Button, StyleSheet, Text, TextInput, View} from 'react-native';
+import React, {useRef} from 'react';
+import {
+  Button, StyleSheet, Text, TextInput, View,
+} from 'react-native';
+import {addCard} from '../decks/decks.action'
+import {connect} from "react-redux";
 
 /*
 # Does the New Question view function correctly?
@@ -12,16 +16,23 @@ const Separator = () => (
   <View style={styles.separator} />
 );
 
-export default function NewQuestion({ navigation, route }) {
+function NewQuestion({ route, dispatch }) {
   const { deck } = route.params;
-  // FIXME change into loaded information about how much of deck cards answered by user.
+  const question = useRef(null);
+  const answer = useRef(null);
+  const newQuestionHandle = ({}) => {
+    console.log(dispatch)
+    dispatch(
+        addCard(deck.id, {question: question.current.value, answer: answer.current.value})
+    );
+  };
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Create new question for deck : </Text>
-     <TextInput label="Question"/>
+      <TextInput label="Question" ref={question} />
       <Separator />
-     <TextInput label="Answer"/>
-      <Button title="Create new question card." />
+      <TextInput label="Answer" ref={answer} />
+      <Button onPress={newQuestionHandle.bind(this)} title="Create new question card." />
     </View>
   );
 }
@@ -50,3 +61,4 @@ const styles = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
 });
+export default connect()( NewQuestion );
