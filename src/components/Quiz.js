@@ -1,6 +1,9 @@
 import React, {useState} from 'react';
 import {Button, StyleSheet, Text, View,} from 'react-native';
 import Separator from "./Separator";
+import {connect} from "react-redux";
+import {addCard} from "../decks/decks.action";
+
 /*
 # Does the Quiz View function correctly?
 - The Quiz view starts with a question from the selected deck.
@@ -14,16 +17,32 @@ import Separator from "./Separator";
  */
 
 
-export default function Quiz({ navigation, route }) {
+function Quiz({ navigation, route }) {
   const { deck } = route.params;
     let deck_questions_count = deck.cards.length;
-    let[questions_remaining, updateQuestionsRemaining] = useState(deck_questions_count);
+    let [questions_remaining, updateQuestionsRemaining] = useState(deck_questions_count);
     let [currentCard, toggleCurrentCard] = useState(0);
     let [showAnswer, toggleShowAnswer] = useState(false)
     let [correctlyAnswered, toggleCorrectlyAnswered] = useState(0);
+
+    const restartQuiz = ({}) => {
+        updateQuestionsRemaining(deck.cards.length);
+        toggleCurrentCard(0);
+        toggleShowAnswer(false)
+        toggleCorrectlyAnswered(0);
+    }
+    const backToDeck = ({}) => {
+        navigation.navigate('Details', {
+            deck: deck,
+        });
+    }
     if(questions_remaining === 0){
         return (
-            <View><Text>No more questions in the card!, You've answered correctly : {correctlyAnswered} out of {deck_questions_count}</Text></View>
+            <View style={styles.container}>
+                <Text>No more questions in the card!, You've answered correctly : {correctlyAnswered} out of {deck_questions_count}</Text>
+                <Button onPress={restartQuiz.bind(this)} color="green" title="Restart Quiz" />
+                <Button onPress={backToDeck.bind(this)} color="red" title="Back to Deck" />
+            </View>
         )
     }
     const question_from_deck = ` ${deck.cards[currentCard].question}`;
@@ -77,3 +96,4 @@ const styles = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
 });
+export default connect()( Quiz );
