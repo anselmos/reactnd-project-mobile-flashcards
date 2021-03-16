@@ -10,6 +10,7 @@ import {receiveDataAction} from "./src/decks/decks.action";
 import {connect} from "react-redux";
 import NewDeck from "./src/components/NewDeck";
 const Stack = createStackNavigator();
+import { setLocalNotification } from './src/utils/helpers'
 
 // TODO move to redux-thunk!
 async function getOrUpdateDecksData(){
@@ -19,6 +20,7 @@ async function getOrUpdateDecksData(){
 class ReduxedApp extends React.Component {
     componentDidMount() {
         getOrUpdateDecksData.call(this);
+        setLocalNotification()
     }
     render(){
         return (

@@ -4,8 +4,13 @@ import {Provider} from 'react-redux'
 import store from './store';
 
 import ReduxedApp from "./ReduxedApp";
+import {setLocalNotification} from "./src/utils/helpers";
 
 class App extends React.Component {
+    componentDidMount() {
+        // setLocalNotification()
+    }
+
 
     render() {
         return (
